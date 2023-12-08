@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import UserBalance
 from django.utils import timezone
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def home(request):
     if request.method == 'POST':
@@ -33,6 +35,11 @@ from django.shortcuts import redirect
 def admin_login_view(request):
     # Redirect to the admin login page
     return redirect('admin:login')
+@csrf_exempt
+@require_http_methods(['POST'])
+def coinbase_webhook(request):
+   
+    return HttpResponse('ok', status=200)
 
     
    
