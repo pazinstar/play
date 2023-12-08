@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import UserBalance
 from django.utils import timezone
-from django.http import JsonResponse, HttpResponse
+
 
 def home(request):
     if request.method == 'POST':
@@ -35,10 +35,6 @@ def admin_login_view(request):
     # Redirect to the admin login page
     return redirect('admin:login')
 
-@require_http_methods(['POST'])
-def coinbase_webhook(request):
-   
-    return HttpResponse('ok', status=200)
 
     
    
