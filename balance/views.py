@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import UserBalance
 from django.utils import timezone
+from datetime import datetime
 
 
 def home(request):
     if request.method == 'POST':
         username = request.POST.get('username')
+        current_time = datetime.now()
+        print("Server time is "+current_time)
     
         user = UserBalance.objects.filter(username=username).first()
        
