@@ -17,7 +17,7 @@ def home(request):
             return redirect('balance:show_balance', username=username)
         else:
             messages.error(request, 'User does not exist. Contact admin.')
-    return render(request, 'balance/home.html')
+    return render(request, 'balance/home.html',{'current_time': current_time})
 
 def show_balance(request, username):
     user = UserBalance.objects.get(username=username)
