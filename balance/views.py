@@ -8,8 +8,8 @@ from datetime import datetime
 def home(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        current_time = datetime.now()
-        print("Server time is ", current_time)
+        
+        
     
         user = UserBalance.objects.filter(username=username).first()
        
@@ -17,6 +17,8 @@ def home(request):
             return redirect('balance:show_balance', username=username)
         else:
             messages.error(request, 'User does not exist. Contact admin.')
+    current_time = datetime.now()
+    print("Server time is ", current_time)
     return render(request, 'balance/home.html',{'current_time': current_time})
 
 def show_balance(request, username):
