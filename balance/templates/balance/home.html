@@ -107,7 +107,7 @@
     </div>
     <div class="container">
         <img src="https://th.bing.com/th/id/R.022f90931b274a40ffa931bc4d0302fa?rik=hgjt9fsSI%2bGCtg&pid=ImgRaw" alt="Icon">
-         <h2>{{current_time}}</h2><br>
+         <h2>{{current_time|timezone:"UTC"}}</h2><br>
         <h3>Enter Your Username:</h3>
        
         <form method="post" action="{% url 'balance:home' %}">
