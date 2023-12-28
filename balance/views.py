@@ -17,7 +17,7 @@ def home(request):
             return redirect('balance:show_balance', username=username)
         else:
             messages.error(request, 'User does not exist. Contact admin.')
-    current_time = datetime.now()
+    current_time = datetime.utcnow()
     print("Server time is ", current_time)
     return render(request, 'balance/home.html',{'current_time': current_time})
 
