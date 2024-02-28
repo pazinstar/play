@@ -99,7 +99,7 @@
         <h2>Hello, {{ user.username }}!</h2>
         <p>Your account balance is: <span class="balance">Ksh {{ user.balance }}</span></p>
         
-        {% if user.balance < 0 %}
+        {% if user.balance < 0 %}  
             <div class="top-up-message">
                 <h2>Please top up your account</h2>
             </div>
