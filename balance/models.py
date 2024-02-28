@@ -4,7 +4,6 @@ from django.utils import timezone
 class UserBalance(models.Model):
     username = models.CharField(max_length=100)
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
-   
     expiry_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):

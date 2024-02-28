@@ -15,11 +15,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 70vh;
+            min-height: 100vh;
         }
 
         .navbar {
-            background-color: blue;
+            background-color: #333;
             padding: 15px;
             width: 100%;
             text-align: center;
@@ -84,72 +84,41 @@
         .expired {
             color: red;
         }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        <style>
-    .container {
-        text-align: center; /* Center the content horizontally */
-    }
-
-    .container img {
-        width: 80px; /* Adjust the width as needed */
-        height: auto; /* Maintain the aspect ratio */
-    }
-</style>
     </style>
 </head>
 <body>
     <div class="navbar">
        
         <a href="{% url 'balance:external_page' %}" target="_blank">Deposit</a>
-        <a href="{% url 'balance:Contact' %}" >Contact</a>
-        <a href="#">Help</a>
-
+        <a href="#">Contact</a>
+        <a href="#">Chat</a>
         <a href="{% url 'balance:home' %}">Logout</a>
     </div>
+
     <div class="container">
-        <img src="https://th.bing.com/th/id/R.022f90931b274a40ffa931bc4d0302fa?rik=hgjt9fsSI%2bGCtg&pid=ImgRaw" alt="Icon">
-    
-        <h3>Hello, {{ user.username }}!</h3>
+        <h2>Hello, {{ user.username }}!</h2>
         <p>Your account balance is: <span class="balance">Ksh {{ user.balance }}</span></p>
         
         {% if user.balance < 0 %}
             <div class="top-up-message">
-                <h4 style="color: black;">Please top up your account</h4>
+                <h2>Please top up your account</h2>
             </div>
             <div class="container">
-                <a href="{% url 'balance:external_page' %}" target="_blank">Deposit</a>
+                <button class="bg-success">Deposit</button>
             </div>
         {% endif %}
 
         {% if user.expiry_date %}
             <div class="expiry-info">
-                <p>Account Expiry Date: <span style="color: #f113af;">{{ user.expiry_date|date:'d/m/y' }}</span></p>
-                <p id="countdown" class="expired">Time until expiry: </p> 
+                <p>Account Expiry Date: {{ user.expiry_date|date:'Y-m-d\TH:i:s' }}</p>
+                <p id="countdown" class="expired">Time until expiry: </p>
                 <input type="hidden" id="expiry-date" value="{{ user.expiry_date|date:'Y-m-d\TH:i:s' }}">
             </div>
         {% endif %}
     </div>
 
     <script>
-        // Countdown MTimer
+        // Countdown Timer
         var countdownElement = document.getElementById('countdown');
         var expiryDate = new Date(document.getElementById('expiry-date').value).getTime();
 
@@ -165,7 +134,7 @@
 
                 countdownElement.innerHTML = `Time until expiry: ${days}d ${hours}h ${minutes}m ${seconds}s`;
             } else {
-                countdownElement.innerHTML = '<span style="color:red;">Account expired!</span> <br> The system will disconnect you soon!';
+                countdownElement.innerHTML = 'Account expired!';
                 countdownElement.classList.add('expired');
             }
         }
