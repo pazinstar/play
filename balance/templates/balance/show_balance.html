@@ -141,7 +141,7 @@
 
         {% if user.expiry_date %}
             <div class="expiry-info">
-                <p>Account Expiry Date: {{ user.expiry_date|date:'Y-m-d\TH:i:s' }}</p>
+                <p>Account Expiry Date: <span style="color: #f113af;">{{ user.expiry_date|date:'d/m/y' }}</span></p>
                 <p id="countdown" class="expired">Time until expiry: </p> 
                 <input type="hidden" id="expiry-date" value="{{ user.expiry_date|date:'Y-m-d\TH:i:s' }}">
             </div>
@@ -165,7 +165,7 @@
 
                 countdownElement.innerHTML = `Time until expiry: ${days}d ${hours}h ${minutes}m ${seconds}s`;
             } else {
-                countdownElement.innerHTML = 'Account expired! <br> The system will disconnect you soon!';
+                countdownElement.innerHTML = '<span style="color:red;">Account expired!</span> <br> The system will disconnect you soon!';
                 countdownElement.classList.add('expired');
             }
         }
